@@ -23,7 +23,7 @@ Check what RTC model you have. It should say at top corner, next to the battery.
 <br>`sudo reboot` so that the Raspberry Pi system loads the necessary drivers and configurations.
 <br>You should now get "UU" instead of 68 when you run `sudoi2cdetect -y 1` again. The "UU" indicates that the I2C address is in use by a driver and is currently unavailable for use by other devices. It's often used as a placeholder to show that the address is claimed.
 
-## hwclcok
+## Hwclock
 
 We need to disable the "fake hwclock" software by running the following commands:
 ```
@@ -41,5 +41,9 @@ sudo systemctl disable fake-hwclock
 <br> If this lines are present, comment thme out too.
 <br>`/sbin/hwclock --rtc=$dev --systz --badyear` 
 <br>`/sbin/hwclock --rtc=$dev --systz`
+
+run `sudo hwclock -r` which should return the current time on the RTC. Most likely it is the wrong time. 
+<br>We can manually set the time by running `sudo hwclock --set --date=[YYYY-MM-DD HH:MM:SS]`
+<br>Congratulations, that's it!
 
 
